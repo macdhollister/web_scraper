@@ -1,0 +1,9 @@
+.card-container {
+    margin: 10px 0;
+}
+
+.card {
+    position: relative;
+    margin: 20px auto;
+    max-width: 80%;
+}

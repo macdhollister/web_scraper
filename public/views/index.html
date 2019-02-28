@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="has-background-grey-light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPR scraper</title>
+
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <p class="is-size-4 navTitle"><strong>NPR scraper</strong></p>
+                </a>
+
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="/">
+                        Home
+                    </a>
+
+                    <a class="navbar-item" href="/saved">
+                        Saved Articles
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary">
+                                <strong>Scrape New Articles</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="card-container is-clearfix">
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    Component
+                </p>
+                <a href="#" class="card-header-icon" aria-label="more options">
+                    <span class="icon">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                </a>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                    <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+                    <br>
+                    <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                </div>
+            </div>
+            <footer class="card-footer">
+                <a href="#" class="card-footer-item">Save</a>
+                <a href="#" class="card-footer-item">Comment</a>
+            </footer>
+        </div>
+
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    Component
+                </p>
+                <a href="#" class="card-header-icon" aria-label="more options">
+                    <span class="icon">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                </a>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                    <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+                    <br>
+                    <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                </div>
+            </div>
+            <footer class="card-footer">
+                <a href="#" class="card-footer-item">Save</a>
+                <a href="#" class="card-footer-item">Comment</a>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+
+</html>
