@@ -5,10 +5,7 @@ const cheerio = require("cheerio");
 
 // Scrape New Articles
 router.get("/scrape", (req, res) => {
-    console.log("scrape started");
     axios.get("https://www.npr.org/sections/news/").then(response => {
-
-        console.log("Axios data received");
 
         const $ = cheerio.load(response.data);
 
@@ -38,41 +35,20 @@ router.get("/scrape", (req, res) => {
                 .attr("href")
                 .trim();
 
-            // db.Article.create(foundData)
-            //     .then(dbArticle => console.log(dbArticle))
-            //     .catch(err => console.log(err));
-
             db.Article.findOne({title: foundData.title})
                 .then(result => {
                     if (!result) {
                         db.Article.create(foundData)
                         .then(dbArticle => {
-                            console.log(dbArticle);
-                            res.redirect("/");
+                            console.log("Article Created");
                         })
                         .catch(err => console.log(err));
                     }
                 })
         });
+    }).then(() => {
+        res.redirect("/");
     })
 })
-
- 
-//         // Create a new Article using the `result` object built from scraping
-//         db.Article.create(result)
-//           .then(function(dbArticle) {
-//             // View the added result in the console
-//             console.log(dbArticle);
-//           })
-//           .catch(function(err) {
-//             // If an error occurred, log it
-//             console.log(err);
-//           });
-//       });
-  
-//       // Send a message to the client
-//       res.send("Scrape Complete");
-//     });
-//   });  
 
 module.exports = router;
