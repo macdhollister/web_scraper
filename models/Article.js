@@ -19,8 +19,7 @@ const ArticleSchema = new Schema({
     },
     createdAt: { 
         type: Date, 
-        default: Date.now,
-        expires: 604800 // expires after 1 week
+        default: Date.now
     },
     comment: [{
         type: Schema.Types.ObjectId,
