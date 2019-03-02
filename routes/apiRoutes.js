@@ -11,42 +11,49 @@ router.get("/scrape", (req, res) => {
         console.log("Axios data received");
 
         const $ = cheerio.load(response.data);
-        const result = {articles: []};
 
         // Need title, summary, date, link
-        $("article.item").each(function(element) {
+        $("article.item").each(function() {
             let foundData = {}
             foundData.title = $(this)
                 .find("h2")
-                .text();
+                .text()
+                .trim();
 
             foundData.summary = $(this)
                 .find("p.teaser")
                 .text()
                 .split(" • ")[1]
+                .trim();
 
             foundData.date = $(this)
                 .find("p.teaser")
                 .text()
                 .split(" • ")[0]
+                .trim();
 
             foundData.link = $(this)
                 .find("h2.title")
                 .children("a")
-                .attr("href");
+                .attr("href")
+                .trim();
 
-            result.articles.push(foundData);
+            // db.Article.create(foundData)
+            //     .then(dbArticle => console.log(dbArticle))
+            //     .catch(err => console.log(err));
 
-            db.Article.create(foundData)
-                .then(dbArticle => console.log(dbArticle))
-                .catch(err => console.log(err));
+            db.Article.findOne({title: foundData.title})
+                .then(result => {
+                    if (!result) {
+                        db.Article.create(foundData)
+                        .then(dbArticle => {
+                            console.log(dbArticle);
+                            res.redirect("/");
+                        })
+                        .catch(err => console.log(err));
+                    }
+                })
         });
-
-
-
-        // This will eventually just update the database, then redirect to homepage
-        // The '/' route needs to populate home page from database first before this can be implemented
-        res.render("home.ejs", result);
     })
 })
 

@@ -4,16 +4,12 @@ const router = require("express").Router();
 const db = require("../models");
 
 router.get("/", (req, res) => {
-    res.render("home.ejs", {
-        articles: [
-            {
-                title: "Test title",
-                summary: "This is a test article",
-                date: "March 1, 2019",
-                link: "#"
-            }
-        ]
-    })
+    db.Article.find({})
+        .then(results => {
+            res.render("home.ejs", {
+                articles: results
+            })
+        })
 })
 
 router.get("/saved", (req, res) => {
