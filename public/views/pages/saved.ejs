@@ -1,26 +1,23 @@
 <div class="card-container is-clearfix">
-    <div class="card">
-        <header class="card-header">
-            <p class="card-header-title">
-                Component
-            </p>
-            <a href="#" class="card-header-icon" aria-label="more options">
-                <span class="icon">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-            </a>
-        </header>
-        <div class="card-content">
-            <div class="content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                <br>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+        <% for (let i = 0; i < articles.length; i++) { %>
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        <%= articles[i].title %>
+                    </p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        <%= articles[i].summary %>
+                        <br>
+                        <time datetime="2016-1-1"><%= articles[i].date %></time>
+                    </div>
+                </div>
+                <footer class="card-footer"articleId="<%= articles[i]._id %>">
+                    <a href="#" class="saveArticle card-footer-item">Save</a>
+                    <a href="#" class="card-footer-item">Comment</a>
+                    <a href="<%= articles[i].link %>" class="card-footer-item">View on NPR</a>
+                </footer>
             </div>
-        </div>
-        <footer class="card-footer">
-            <a href="#" class="card-footer-item">Save</a>
-            <a href="#" class="card-footer-item">Comment</a>
-        </footer>
+        <% } %>
     </div>
-</div>

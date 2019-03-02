@@ -13,7 +13,12 @@ router.get("/", (req, res) => {
 })
 
 router.get("/saved", (req, res) => {
-    res.render("saved.ejs");
+    db.SavedArticle.find({})
+        .then(results => {
+            res.render("saved.ejs", {
+                articles: results
+            })
+        })
 })
 
 module.exports = router;
