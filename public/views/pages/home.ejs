@@ -1,0 +1,23 @@
+<div class="card-container is-clearfix">
+    <% for (let i = 0; i < articles.length; i++) { %>
+        <div class="card" articleId="<%= articles[i]._id %>">
+            <header class="card-header">
+                <p class="card-header-title">
+                    <%= articles[i].title %>
+                </p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    <%= articles[i].summary %>
+                    <br>
+                    <time datetime="2016-1-1"><%= articles[i].date %></time>
+                </div>
+            </div>
+            <footer class="card-footer">
+                <a href="#" class="card-footer-item">Save</a>
+                <a href="#" class="card-footer-item">Comment</a>
+                <a href="<%= articles[i].link %>" class="card-footer-item">View on NPR</a>
+            </footer>
+        </div>
+    <% } %>
+</div>
