@@ -17,9 +17,10 @@ const ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    createdAt: { 
-        type: Date, 
-        default: Date.now
+    created_at: {
+        type: Date,
+        default: Date.now,
+        expires: 604800
     },
     comment: [{
         type: Schema.Types.ObjectId,
