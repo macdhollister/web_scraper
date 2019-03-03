@@ -5,8 +5,11 @@ $(".burger").on("click", () => {
 
 $(document).on("click", ".saveArticle", function(e) {
     e.preventDefault();
-    alert("Article Saved!");
     $.post("/save", {
         id: $(this).parent().attr("articleId")
-    });
+    })
+    .done(data => {
+        if (data.saved) alert("Article saved!");
+        else alert("This article was already saved!");
+    })
 });
