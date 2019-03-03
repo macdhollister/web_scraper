@@ -46,7 +46,7 @@ router.get("/scrape", (req, res) => {
                             .catch(err => console.log(err));
                     }
                 })
-        });
+        })
     }).then(() => {
         res.redirect("/");
     })
@@ -55,18 +55,25 @@ router.get("/scrape", (req, res) => {
 router.post("/save", (req, res) => {
     db.Article.findById(req.body.id)
         .then(result => {
-            console.log(result);
-            db.SavedArticle.create({
-                title: result.title,
-                summary: result.summary,
-                date: result.date,
-                link: result.link,
-                comments: result.comment
-            })
-            .then(saved => {
-                console.log("Article Saved");
-            })
-            .catch(err => console.log(err));
+            db.SavedArticle.findOne({title: result.title})
+                .then(savedResult => {
+                    if (!savedResult) {
+                        db.SavedArticle.create({
+                            title: result.title,
+                            summary: result.summary,
+                            date: result.date,
+                            link: result.link,
+                            comments: result.comment
+                        })
+                        .then(() => {
+                            console.log("Article Saved");
+                            res.json({saved: true});
+                        })
+                        .catch(err => console.log(err));
+                    } else {
+                        res.json({saved: false});
+                    }
+                })
         })
         .catch(err => console.log(err));
 })
