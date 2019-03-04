@@ -1,23 +1,61 @@
 <div class="card-container is-clearfix">
-        <% for (let i = 0; i < articles.length; i++) { %>
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        <%= articles[i].title %>
-                    </p>
+    <% for (let i = 0; i < articles.length; i++) { %>
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+                <%= articles[i].title %>
+            </p>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <%= articles[i].summary %>
+                <br>
+                <time><%= articles[i].date %></time>
+            </div>
+        </div>
+        <footer class="card-footer" articleId="<%= articles[i]._id %>">
+            <a href="#" class="unsaveArticle card-footer-item">Unsave</a>
+            <a href="#" class="modal-button card-footer-item" data-target="#<%= articles[i]._id %>">Comment</a>
+            <a target="_blank" href="<%= articles[i].link %>" class="card-footer-item">View on NPR</a>
+        </footer>
+
+        <!-- BEGIN MODAL -->
+        <div id="<%= articles[i]._id %>" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Comments</p>
+                    <button class="delete" aria-label="close"></button>
                 </header>
-                <div class="card-content">
-                    <div class="content">
-                        <%= articles[i].summary %>
-                        <br>
-                        <time datetime="2016-1-1"><%= articles[i].date %></time>
-                    </div>
-                </div>
-                <footer class="card-footer"articleId="<%= articles[i]._id %>">
-                    <a href="#" class="saveArticle card-footer-item">Save</a>
-                    <a href="#" class="card-footer-item">Comment</a>
-                    <a href="<%= articles[i].link %>" class="card-footer-item">View on NPR</a>
+                <section class="modal-card-body">
+                    <!-- CONTENT ... -->
+                    <article class="media">
+                        <div class="media-content">
+                            <form action="/comment/<%= articles[i]._id %>" method="POST">
+                                <div class="field">
+                                    <p class="control">
+                                        <textarea name="text" class="textarea"
+                                            placeholder="Add a comment..."></textarea>
+                                    </p>
+                                </div>
+                                <nav class="level">
+                                    <div class="level-left"></div>
+                                    <div class="level-right">
+                                        <div class="level-item">
+                                            <button type="submit" class="button is-info">Submit</button>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </form>
+                        </div>
+                    </article>
+                    <!-- END CONTENT -->
+                </section>
+                <footer class="modal-card-foot">
                 </footer>
             </div>
-        <% } %>
+        </div>
+        <!-- END MODAL -->
     </div>
+    <% } %>
+</div>

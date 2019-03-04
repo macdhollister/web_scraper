@@ -40,9 +40,6 @@ router.get("/scrape", (req, res) => {
                 .then(result => {
                     if (!result) {
                         db.Article.create(foundData)
-                            .then(dbArticle => {
-                                console.log("Article Created");
-                            })
                             .catch(err => console.log(err));
                     }
                 })
@@ -63,10 +60,8 @@ router.post("/save", (req, res) => {
                             summary: result.summary,
                             date: result.date,
                             link: result.link,
-                            comments: result.comment
                         })
                         .then(() => {
-                            console.log("Article Saved");
                             res.json({saved: true});
                         })
                         .catch(err => console.log(err));
@@ -76,6 +71,27 @@ router.post("/save", (req, res) => {
                 })
         })
         .catch(err => console.log(err));
+})
+
+router.post("/unsave", (req, res) => {
+    db.SavedArticle.findByIdAndDelete(req.body.id)
+        .then(result => {
+            res.json(result);
+        })
+})
+
+router.post("/comment/:id", (req, res) => {
+    const c = new db.Comment({body: req.body.text});
+    c.save().then(result => {
+        return db.SavedArticle.findOneAndUpdate(
+            { _id: req.params.id },
+            { $push: { comments: result._id } },
+            {new: true}
+        ).then(foundArticle => {
+            // res.json(foundArticle)
+            res.redirect("/comments/" + req.params.id);
+        })
+    })
 })
 
 module.exports = router;

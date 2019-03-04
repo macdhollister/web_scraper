@@ -21,4 +21,12 @@ router.get("/saved", (req, res) => {
         })
 })
 
+router.get("/comments/:id", (req, res) => {
+    db.SavedArticle.findById(req.params.id)
+        .populate("Comments")
+        .then(article => {
+            res.json(article);
+        })
+})
+
 module.exports = router;
