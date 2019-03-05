@@ -1,11 +1,6 @@
 const express = require("express");
 const layouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
-const axios = require("axios");
-const cheerio = require("cheerio");
-
-const path = require("path");
-
 
 // Database
 const db = require("./models");

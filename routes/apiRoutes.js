@@ -2,7 +2,6 @@ const db = require("../models");
 const axios = require("axios");
 const router = require("express").Router();
 const cheerio = require("cheerio");
-const mongoose = require("mongoose");
 
 // Scrape New Articles
 router.get("/scrape", (req, res) => {
