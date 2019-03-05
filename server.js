@@ -9,7 +9,8 @@ const path = require("path");
 
 // Database
 const db = require("./models");
-mongoose.connect("mongodb://localhost/nprScraper", { useNewUrlParser: true });
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nprScraper";
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // test connection
 const connection = mongoose.connection;
