@@ -15,7 +15,8 @@
         </div>
         <footer class="card-footer" articleId="<%= articles[i]._id %>">
             <a href="#" class="unsaveArticle card-footer-item">Unsave</a>
-            <a href="#" class="modal-button card-footer-item" data-target="#<%= articles[i]._id %>">Comment</a>
+            <a href="/comments/<%= articles[i]._id %>" class="card-footer-item">View Comments</a>
+            <a href="#" class="modal-button card-footer-item" data-target="#<%= articles[i]._id %>">Add Comment</a>
             <a target="_blank" href="<%= articles[i].link %>" class="card-footer-item">View on NPR</a>
         </footer>
 
