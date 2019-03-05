@@ -27,13 +27,12 @@ router.get("/comments/:id", (req, res) => {
         .exec((err, article) => {
             if (err) res.json(err)
             else {
-                console.log(article);
-                res.json(article)
+                // res.json(article)
+                res.render("comments.ejs", {
+                    article: article
+                });
             }
         })
-        // .then(article => {
-        //     res.json(article);
-        // })
 })
 
 module.exports = router;

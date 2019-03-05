@@ -1,0 +1,52 @@
+<div class="card-container is-clearfix">
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+                <%= article.title %>
+            </p>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <%= article.summary %>
+                <br>
+                <time><%= article.date %></time>
+            </div>
+        </div>
+        <footer class="card-footer" articleId="<%= article._id %>">
+            <a href="#" class="unsaveArticle card-footer-item">Unsave</a>
+            <a target="_blank" href="<%= article.link %>" class="card-footer-item">View on NPR</a>
+        </footer>
+    </div>
+</div>
+
+<% for (let i = 0; i < article.comments.length; i++) { %>
+<div class="box">
+    <article class="media">
+        <div class="media-content">
+            <div class="content">
+                <p><%= article.comments[i].body %></p>
+            </div>
+        </div>
+    </article>
+</div>
+<% } %>
+
+<article class="media box">
+    <div class="media-content">
+        <form action="/comment/<%= article._id %>" method="POST">
+            <div class="field">
+                <p class="control">
+                    <textarea name="text" class="textarea" placeholder="Add a comment..."></textarea>
+                </p>
+            </div>
+            <nav class="level">
+                <div class="level-left"></div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <button type="submit" class="button is-info">Submit</button>
+                    </div>
+                </div>
+            </nav>
+        </form>
+    </div>
+</article>
